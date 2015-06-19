@@ -14,13 +14,13 @@
     <packaging>pom</packaging>
 
     <properties>
-        <!--<outputFolder>out</outputFolder>-->
-        <!--<buildCommand>npm install | grunt</buildCommand>-->
+        <outputFolder>client/public</outputFolder>
+        <buildCommand>npm install | gulp prod</buildCommand>
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.gamesys.co.uk/jose-hillers/three-essentials.git</connection>
-        <developerConnection>scm:https://github.gamesys.co.uk/jose-hillers/three-essentials.git</developerConnection>
+        <connection>scm:git@github.gamesys.co.uk:fernando-godinho/js-dungeon-scare-v2.git</connection>
+        <developerConnection>scm:git@github.gamesys.co.uk:fernando-godinho/js-dungeon-scare-v2.git</developerConnection>
         <url>origin</url>
     </scm>
 
