@@ -56,13 +56,14 @@ gulp.task('dev-css', function() {
     );
     //
 
-    return gulp.src('./client/src/app/main/index.html')
+    return gulp.src('./client/src/app/main/template/index.jade')
         .pipe(inject(streams, {
-            starttag: '<!-- inject:css -->',
+            starttag: '// inject:css',
+            endtag: '// endinject',
             ignorePath: "/client/src/",
             transform: function (filepath) {
                 var type = (filepath.substr(filepath.lastIndexOf(".")).toLowerCase() == ".less")?'stylesheet/less':'stylesheet';
-                return '<link rel="' + type + '" type="text/css" href="' + filepath + '" />';
+                return 'link(rel="' + type + '" type="text/css" href="' + filepath + '")';
             }
         }))
         .pipe(gulp.dest('./temp'));
@@ -76,13 +77,14 @@ gulp.task('dev-js', function() {
     );
 
     //
-    return gulp.src('./temp/index.html')
+    return gulp.src('./temp/index.jade')
         .pipe(inject(streams, {
-            starttag: '<!-- inject:js -->',
+            starttag: '// inject:js',
+            endtag: '// endinject',
             ignorePath: "/client/src/",
             transform: function (filepath) {
                 var type = (filepath.substr(filepath.lastIndexOf(".")).toLowerCase() == ".ts")?'type="text/typescript"':'';
-                return '<script ' + type + ' src="' + filepath + '"></script>';
+                return 'script( ' + type + ' src="' + filepath + '")';
             }
         }))
         .pipe(gulp.dest('./client/src'));
@@ -244,13 +246,36 @@ gulp.task('prod-app-html', function() {
 });
 
 gulp.task('prod-inject-index', function() {
-    return gulp.src('./client/src/app/main/index.html')
-        .pipe(inject(gulp.src([
-            "./client/public/lib/jquery/**/*.*",
-            "./client/public/lib/bootstrap/**/*.*",
-            "./client/public/lib/easeljs/**/*.*",
-            "./client/public/lib/app/**/*.*"
-        ]), { ignorePath: "/client/public/" }))
+    var stream = gulp.src([
+        "./client/public/lib/jquery/**/*.*",
+        "./client/public/lib/bootstrap/**/*.*",
+        "./client/public/lib/easeljs/**/*.*",
+        "./client/public/lib/app/**/*.*"
+    ]);
+
+    return gulp.src('./client/src/app/main/template/index.jade')
+        .pipe(inject(stream, {
+            starttag: '// inject:css',
+            endtag: '// endinject',
+            ignorePath: "/client/public/",
+            transform: function (filepath) {
+                var ext     =  filepath.substr(filepath.lastIndexOf(".")+1).toLowerCase();
+                if (ext == "css") return 'link(rel="stylesheet" type="text/css" href="' + filepath + '")';
+
+            }
+        }))
+        .pipe(inject(stream, {
+            starttag: '// inject:js',
+            endtag: '// endinject',
+            ignorePath: "/client/public/",
+            transform: function (filepath) {
+                var ext     =  filepath.substr(filepath.lastIndexOf(".")+1).toLowerCase();
+                if (ext == "js") return 'script( src="' + filepath + '")';
+            }
+        }))
+        .pipe(jade({
+            pretty:         true,
+        }))
         .pipe(minifyHTML({
             conditionals:   true,
             spare:          true

@@ -36,6 +36,13 @@ function ServerController() {
         });
     };
 
+    _instance.setIndex      = function(path) {
+        _instance.getIndex  = function(){ return path; };
+        _router.all('/', function(req, res, next) {
+            res.redirect(path);
+        });
+    };
+
     _instance.bindTo        = function(port) {
         _instance.getPort   = function(){ return port; };
 
