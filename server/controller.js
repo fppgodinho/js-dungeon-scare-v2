@@ -39,7 +39,7 @@ function ServerController() {
     _instance.setIndex      = function(path) {
         _instance.getIndex  = function(){ return path; };
         _router.all('/', function(req, res, next) {
-            res.redirect(path);
+            res.render(path);
         });
     };
 
@@ -49,7 +49,7 @@ function ServerController() {
         var _server         = _app.listen(port, function() {
             var host        = _server.address().address;
             var port        = _server.address().port;
-            console.log('Example app listening at http://%s:%s', host, port);
+            console.log('Listening at http://%s:%s', host, port);
         });
         _instance.getServer = function() { return _server; };
     };

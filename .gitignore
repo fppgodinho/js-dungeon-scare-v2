@@ -34,6 +34,7 @@ node_modules
 
 client/temp
 client/src/index.html
+client/src/index.jade
 client/public/*
 
 # Maven stuff
