@@ -32,7 +32,7 @@ node_modules
 *.ipr
 *.iml
 
-client/temp
+temp
 client/src/index.html
 client/src/index.jade
 client/public/*

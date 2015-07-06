@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------------------------------------------------------
 // { region Dependencies
+require('coffee-script/register');
 var gulp        = require('gulp');
 var inject      = require('gulp-inject');
 var concat      = require('gulp-concat');
@@ -364,5 +365,32 @@ function getSources(collection, dev, prod, types, modules) {
 
     return sources;
 }
+// } endregion
+// ---------------------------------------------------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------------------------------------------------
+// { region TDD | BDD
+var karma = require('gulp-karma');
+
+gulp.task('test-run', function() {
+    return gulp.src('./client/src/app/**/test/**/*.js', {read: false})
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        });
+});
+
+
+gulp.task('test-watch', function() {
+    gulp.src('./client/src/app/**/test/**/*.js', {read: false})
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'watch'
+        }));
+});
 // } endregion
 // ---------------------------------------------------------------------------------------------------------------------
