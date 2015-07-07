@@ -1,8 +1,8 @@
 {
-  "name": "js-dungeon-scare-v2",
+  "name": "html5-boilerplate",
   "version": "1.0.0",
-  "description": "Instant game inspired on monster infested dungeons exploration",
-  "author": "fernando.godinho@gamesys.co.uk",
+  "description": "Boilerplate for all HTML5 related projects",
+  "author": "fppgodinho@gmail.com",
   "license": "ISC",
   "main": "run.js",
   "scripts": {
@@ -47,6 +47,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.gamesys.co.uk:fernando-godinho/js-dungeon-scare-v2.git"
+    "url": "git@github.com:fppgodinho/html5-boilerplate.git"
   }
 }

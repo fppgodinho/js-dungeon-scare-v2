@@ -17,10 +17,8 @@ function ServerController() {
         ext                 = ext || "jade";
         _instance.getJade   = function(){ return path; };
         _app.set('views', path);
+        _app.locals.basedir = path ;
         _app.engine('.' + ext, require('jade').__express);
-        _router.use('*.' + ext, function(req, res, next){
-            res.render(path + req.originalUrl);
-        });
     };
 
     _instance.setStatic     = function(path) {

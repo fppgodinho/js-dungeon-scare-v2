@@ -246,7 +246,8 @@ gulp.task('prod-app-concat-styles', function() {
 gulp.task('prod-app-jade', function() {
     return gulp.src(getAppMduleSources(false, true, ["jade"]), {base: "./client/src"})
         .pipe(jade({
-            pretty:         true,
+            basedir:        __dirname + "/client/src/",
+            pretty:         true
         }))
         .pipe(minifyHTML({
             conditionals:   true,
@@ -301,6 +302,7 @@ gulp.task('prod-inject-index', function() {
             }
         }))
         .pipe(jade({
+            basedir:        __dirname + "/client/src/",
             pretty:         true,
         }))
         .pipe(minifyHTML({
@@ -333,8 +335,8 @@ function injectModule(modules, name) {
             './client/src/app/' + name + '/bootstrap.coffee',
             './client/src/app/' + name + '/**/*.css',
             './client/src/app/' + name + '/**/*.less',
-            './client/src/app/' + name + '/template/**/*.html',
-            './client/src/app/' + name + '/template/**/*.jade',
+            './client/src/app/' + name + '/template/*.html',
+            './client/src/app/' + name + '/template/*.jade',
             './client/src/app/' + name + '/media/**/*.jpg',
             './client/src/app/' + name + '/media/**/*.jpeg',
             './client/src/app/' + name + '/media/**/*.gif',
