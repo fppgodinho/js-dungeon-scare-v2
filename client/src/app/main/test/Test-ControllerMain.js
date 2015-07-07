@@ -6,6 +6,5 @@ describe('ControllerMain', function () {
         it('should have id set to: "STAGE"', function () {
             main.should.have.property('id', "STAGE");
         });
-
     });
 });

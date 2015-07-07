@@ -2,7 +2,14 @@
   "name": "js-dungeon-scare-v2",
   "version": "1.0.0",
   "description": "Instant game inspired on monster infested dungeons exploration",
+  "author": "fernando.godinho@gamesys.co.uk",
+  "license": "ISC",
   "main": "run.js",
+  "scripts": {
+    "test": "./node_modules/.bin/karma start",
+    "compile": "./node_modules/.bin/gulp dev",
+    "deploy": "./node_modules/.bin/gulp prod"
+  },
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.0.0",
@@ -31,19 +38,15 @@
     "karma-ie-launcher": "^0.2.0",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.0",
+    "karma-phantomjs-shim": "^1.0.0",
     "karma-safari-launcher": "^0.1.1",
     "karma-typescript-preprocessor": "0.0.19",
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.17",
     "run-sequence": "^1.1.0"
   },
-  "scripts": {
-    "test": "./node_modules/.bin/karma start"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.gamesys.co.uk:fernando-godinho/js-dungeon-scare-v2.git"
-  },
-  "author": "fernando.godinho@gamesys.co.uk",
-  "license": "ISC"
+  }
 }

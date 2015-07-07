@@ -367,30 +367,3 @@ function getSources(collection, dev, prod, types, modules) {
 }
 // } endregion
 // ---------------------------------------------------------------------------------------------------------------------
-
-// ---------------------------------------------------------------------------------------------------------------------
-// { region TDD | BDD
-var karma = require('gulp-karma');
-
-gulp.task('test-run', function() {
-    return gulp.src('./client/src/app/**/test/**/*.js', {read: false})
-        .pipe(karma({
-            configFile: 'karma.conf.js',
-            action: 'run'
-        }))
-        .on('error', function(err) {
-            // Make sure failed tests cause gulp to exit non-zero
-            throw err;
-        });
-});
-
-
-gulp.task('test-watch', function() {
-    gulp.src('./client/src/app/**/test/**/*.js', {read: false})
-        .pipe(karma({
-            configFile: 'karma.conf.js',
-            action: 'watch'
-        }));
-});
-// } endregion
-// ---------------------------------------------------------------------------------------------------------------------

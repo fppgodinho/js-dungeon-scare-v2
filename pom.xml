@@ -15,7 +15,7 @@
 
     <properties>
         <outputFolder>client/public</outputFolder>
-        <buildCommand>npm install | gulp prod</buildCommand>
+        <buildCommand>npm install | npm run deploy</buildCommand>
     </properties>
 
     <scm>
