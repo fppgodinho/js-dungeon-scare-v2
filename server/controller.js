@@ -1,5 +1,7 @@
 "use strict";
 var express             = require('express');
+var servletPlay         = require("./servlet/play");
+
 
 function ServerController() {
     var _instance           = {};
@@ -7,6 +9,16 @@ function ServerController() {
 
     var _router             = express.Router();
     _router.use(function(req, res, next) { console.log(new Date(Date.now()).toTimeString() + " " + req.ip + ":" + req.originalUrl); next(); });
+    _router.all('/servlet/:controller', function(req, res, next) {
+        var controller = req.params.controller;
+        switch(controller) {
+            case "play": servletPlay.render(req, res); break;
+            default:
+                res.status(404);
+                res.send(_instance.get404());
+                break;
+        }
+    });
     _instance.getRouter     = function() { return _router; };
 
     var _app                = express();

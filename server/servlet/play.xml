@@ -1,0 +1,9 @@
+<Events>
+  <UpdateBalancePostWagerEvent balance="5346.91" />
+  <PickBonusEvent balance="5356.91" grossWin="10.00" grossWinPerLine="5.00" id="0" initiatingLines="15,23">
+    <Pick type="WIN" value="25" />
+    <Pick type="WIN" value="25" />
+    <Pick type="COLLECT" value="0" />
+  </PickBonusEvent>
+  <GameOverEvent balance="5356.91" groupId="19010" />
+</Events>
