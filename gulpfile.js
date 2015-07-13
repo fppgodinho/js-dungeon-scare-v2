@@ -26,7 +26,8 @@ var sources3rdParty = {
     'less':         {dev: true, prod: false,    streams: ['./client/src/3rdparty/typescript/engine.js',         './client/src/3rdparty/less/compiler.js']},
     'typescript':   {dev: true, prod: false,    streams: ['./client/src/3rdparty/typescript/engine.js',         './client/src/3rdparty/typescript/compiler.js']},
     'coffeescript': {dev: true, prod: false,    streams: ['./client/src/3rdparty/coffeescript/compiler.js']},
-    'easeljs':      {dev: true, prod: true,     streams: ['./client/src/3rdparty/easeljs/0.8.1.js']}
+    'easeljs':      {dev: true, prod: true,     streams: ['./client/src/3rdparty/easeljs/0.8.1.js']},
+    'darkhounds':   {dev: true, prod: true,     streams: ['./client/src/3rdparty/darkhounds/**/*.js']}
 };
 
 var sourcesAppModules = {};
@@ -114,6 +115,7 @@ gulp.task('prod', function(finish) {
         'prod-jquery',
         'prod-bootstrap',
         'prod-easeljs',
+        'prod-darkhounds',
         'prod-app',
         'prod-inject-index',
         'prod-destroy-temp',
@@ -167,6 +169,19 @@ gulp.task('prod-easeljs-js', function() {
         .pipe(uglify())
         .pipe(gulp.dest('./client/public/lib/easeljs/'));
 });
+
+gulp.task('prod-darkhounds', function(finish){
+    runSequence(
+        'prod-darkhounds-js',
+        finish);
+});
+
+gulp.task('prod-darkhounds-js', function() {
+    return gulp.src(get3RDPartySources(false, true, ["js"], ["darkhounds"]))
+        .pipe(uglify())
+        .pipe(gulp.dest('./client/public/lib/darkhounds/'));
+});
+
 
 gulp.task('prod-app', function(finish){
     runSequence(
@@ -278,6 +293,7 @@ gulp.task('prod-inject-index', function() {
         "./client/public/lib/jquery/**/*.*",
         "./client/public/lib/bootstrap/**/*.*",
         "./client/public/lib/easeljs/**/*.*",
+        "./client/public/lib/darkhounds/**/*.*",
         "./client/public/lib/app/**/*.*"
     ]);
 

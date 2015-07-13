@@ -1,7 +1,4 @@
 "use strict"
-Function::property = (prop, desc) ->
-    Object.defineProperty @prototype, prop, desc
-
 class window.ControllerCharacter
     _sheet                  = null
     _animation              = null
