@@ -5,7 +5,6 @@ class window.ControllerMain
         @getDir                         = -> return _currentDir
         #
         _mainCharacterAnimations        = new createjs.SpriteSheet(@data.mainCharacter)
-        # _canvas                         = document.getElementById(@id)
         _canvas                         = document.getElementById(@id)
         _stage                          = new createjs.Stage(_canvas)
         _characterAnimation             = new createjs.Sprite(_mainCharacterAnimations)

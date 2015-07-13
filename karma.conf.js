@@ -22,7 +22,7 @@ module.exports = function(config) {
       '**/3rdparty/typescript/**/engine.js',
       '**/3rdparty/typescript/**/compiler.js',
       '**/3rdparty/less/**/*.js',
-      '**/script/*.*',
+      '**/script/**/*.*',
       '**/test/**/*.*',
     ],
 
