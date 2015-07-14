@@ -1,4 +1,11 @@
 "use strict";
-Function.prototype.property = function(prop, desc) {
-    return Object.defineProperty(this.prototype, prop, desc);
-};
+Object.defineProperty(Object.prototype, "addGetterSetter", {
+    configurable:   false,
+    enumerable:     false,
+    value:          function(prop, getter, setter) {
+        return Object.defineProperty(this, prop, {
+            get: getter,
+            set: setter
+        });
+    }
+});
