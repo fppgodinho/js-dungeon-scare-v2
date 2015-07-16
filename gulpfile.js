@@ -27,6 +27,7 @@ var sources3rdParty = {
     'typescript':   {dev: true, prod: false,    streams: ['./client/src/3rdparty/typescript/engine.js',         './client/src/3rdparty/typescript/compiler.js']},
     'coffeescript': {dev: true, prod: false,    streams: ['./client/src/3rdparty/coffeescript/compiler.js']},
     'easeljs':      {dev: true, prod: true,     streams: ['./client/src/3rdparty/easeljs/0.8.1.js']},
+    'pixie':        {dev: true, prod: true,     streams: ['./client/src/3rdparty/pixie/3.0.7.js']},
     'darkhounds':   {dev: true, prod: true,     streams: ['./client/src/3rdparty/darkhounds/**/*.js']}
 };
 
@@ -115,6 +116,7 @@ gulp.task('prod', function(finish) {
         'prod-jquery',
         'prod-bootstrap',
         'prod-easeljs',
+        'prod-pixie',
         'prod-darkhounds',
         'prod-app',
         'prod-inject-index',
@@ -168,6 +170,18 @@ gulp.task('prod-easeljs-js', function() {
     return gulp.src(get3RDPartySources(false, true, ["js"], ["easeljs"]))
         .pipe(uglify())
         .pipe(gulp.dest('./client/public/lib/easeljs/'));
+});
+
+gulp.task('prod-pixie', function(finish){
+    runSequence(
+        'prod-pixie-js',
+        finish);
+});
+
+gulp.task('prod-pixie-js', function() {
+    return gulp.src(get3RDPartySources(false, true, ["js"], ["pixie"]))
+        .pipe(uglify())
+        .pipe(gulp.dest('./client/public/lib/pixie/'));
 });
 
 gulp.task('prod-darkhounds', function(finish){
@@ -293,6 +307,7 @@ gulp.task('prod-inject-index', function() {
         "./client/public/lib/jquery/**/*.*",
         "./client/public/lib/bootstrap/**/*.*",
         "./client/public/lib/easeljs/**/*.*",
+        "./client/public/lib/pixie/**/*.*",
         "./client/public/lib/darkhounds/**/*.*",
         "./client/public/lib/app/**/*.*"
     ]);

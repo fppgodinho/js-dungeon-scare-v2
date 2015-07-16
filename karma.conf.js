@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
       '**/3rdparty/jquery/**/*.js',
       '**/3rdparty/easeljs/**/*.js',
+      '**/3rdparty/pixie/**/*.js',
       '**/3rdparty/bootstrap/**/*.js',
       '**/3rdparty/coffeescript/**/*.js',
       '**/3rdparty/typescript/**/engine.js',
